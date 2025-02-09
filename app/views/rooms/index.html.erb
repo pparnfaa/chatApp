@@ -6,6 +6,7 @@
       <% end %>
     </div>
     <%= render partial: 'form', locals: {room: Room.new(name: "Room #{Room.count + 1}")} %>
+    <%= turbo_stream_from @room %>
     <%= button_to "Logout", session_path,method: :delete %>
 
   </div>

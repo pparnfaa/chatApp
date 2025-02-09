@@ -27,10 +27,11 @@ class MessagesController < ApplicationController
   # POST /messages or /messages.json
   def create
     @message = Message.new(message_params)
+    @message.user_id = session[:user_id]
 
     respond_to do |format|
       if @message.save
-        @message.broadcast_append_to @message.room, partial: @message, locals: { message: @message }, target: "messages-area"
+        @message.broadcast_append_to @message.room, partial: @message, locals: { message: @message }, target: "message-list"
         format.html { redirect_to @message, notice: "Message was successfully created." }
         format.json { render :show, status: :created, location: @message }
         format.turbo_stream
@@ -74,6 +75,6 @@ class MessagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def message_params
-      params.expect(message: [ :content, :room_id ])
+      params.require(:message).permit(:content, :room_id, :user_id)
     end
 end

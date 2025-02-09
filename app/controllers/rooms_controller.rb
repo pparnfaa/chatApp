@@ -29,6 +29,7 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
+        @room.broadcast_append_to @room.name, partial: @room, locals: { room: @room }, target: "room-list"
         format.html { redirect_to @room, notice: "Room was successfully created." }
         format.json { render :show, status: :created, location: @room }
         format.turbo_stream
@@ -70,6 +71,6 @@ class RoomsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def room_params
-      params.expect(room: [ :name ])
+      params.require(:room).permit(:name)
     end
 end
