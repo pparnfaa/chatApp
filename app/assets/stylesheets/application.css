@@ -1,0 +1,23 @@
+html, body, #chatapp {
+    height: 100%;
+    margin: 0;
+}
+#chatapp {
+    display: flex;
+    flex-direction: row;
+}
+#rooms {
+    background-color: lightblue;
+    width: 200px;
+}
+#messages {
+    background-color: beige;
+    flex-grow: 1;
+}
+#message-form {
+    display: flex;
+}
+.message form {
+    display: inline-block;
+}
+  
