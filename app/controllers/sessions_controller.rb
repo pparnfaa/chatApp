@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       start_new_session_for user
       redirect_to rooms_path
     else
-      redirect_to root_path, alert: "Try another email address or password."
+      redirect_to root_path, alert: "Enter a valid email or password."
     end
   end
 

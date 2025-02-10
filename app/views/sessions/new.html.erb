@@ -1,13 +1,37 @@
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
 <%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+<body class="login-page">
+  <div class="wrapper">
+    <h1 class="login-header">Login</h1>
+    <%= form_with url: session_path do |form| %>
+    
+    <div class="wrapper-box">
+      <div class="input-box">
+        <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Email Address", value: params[:email_address], maxlength: 100, class:"box" %><br>
+      </div>
 
-<h1>Login</h1>
-<%= form_with url: session_path do |form| %>
-  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-  <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %><br>
-  <%= form.submit "Sign in" %>
-<% end %>
-<br>
+      <div class="input-box">
+          <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Password", maxlength: 50, class:"box" %><br>
+      </div>
+      <div class="alert-login-fail">
+        <%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
+      </div>
+      <div class="button-signin">
+        <%= form.submit "Log in", class: "button" %>
+      </div>
+    </div>
+  <% end %>
+  <br>
 
-<%= link_to "Forgot password?", new_password_path %>
-<%= link_to "Registration", new_registration_path %>
+  <div class="forget-regist">
+    <%= link_to "Forgot password?", new_password_path, class:"forget-regist-color" %>
+  </div>
+
+  <div class="forget-regist">
+    Don't have an account?
+    <%= link_to "Create account", new_registration_path, class:"forget-regist-color" %>
+  </div>
+
+
+</div>
+</body>
+

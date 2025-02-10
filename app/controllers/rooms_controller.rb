@@ -22,6 +22,7 @@ class RoomsController < ApplicationController
   # GET /rooms/1/edit
   def edit
   end
+  
 
   # POST /rooms or /rooms.json
   def create

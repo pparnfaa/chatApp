@@ -1,10 +1,10 @@
 <div id="message-actions">
-<%= form_with(model: message, id: 'message-form') do |form| %>
-  <%= form.text_field :content %>
-  <%= form.hidden_field :room_id %>
-  <%= form.hidden_field :user_id %> 
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+  <%= form_with(model: message, id: 'message-form', class: "chat-form") do |form| %>
+    <div class="chat-actions">
+      <%= form.text_field :content, class: "chat-input" %>
+      <%= form.hidden_field :room_id %>
+      <%= form.hidden_field :user_id %> 
+      <%= form.submit "Send", class: "chat-button" %>
+    </div>
+  <% end %>
 </div>

@@ -1,11 +1,19 @@
-<h1>Registration</h1>
-    <%= form_with url: registration_index_path do |form| %>
+<body class="signup-page">
+    <div class="wrapper-signup">
+        <h1 class="signup-header">Create Account</h1>
+        <%= form_with url: registration_index_path do |form| %>
 
-<div>
-    <%= form.email_field :email_address, required: true,autofocus: true, autocomplete: "email", placeholder:"Enter your email address", value: params[:email_address]%>
-</div>
+        <div class="input-box-signup">
+            <%= form.email_field :email_address, required: true,autofocus: true, autocomplete: "email", placeholder:"Enter your Email", value: params[:email_address],maxlength: 100,  class:"box-signup"%>
+        </div>
 
-<div>
-    <%= form.password_field :password, required: true,autocomplete: "new-password", placeholder: "Create apassword", maxlength: 72 %>
-</div>
-<%= form.submit "Sign up" %><% end %>
+        <div class="input-box-signup">
+            <%= form.password_field :password, required: true,autocomplete: "new-password", placeholder: "Create password", maxlength: 50, class:"box-signup" %>
+        </div>
+        
+        <div class="button-signup">
+            <%= form.submit "Create account", class:"button-create" %><% end %>
+        </div>
+        
+    </div>
+</body>

@@ -1,11 +1,13 @@
 <div id='actions'>
   <%= form_with(model: room) do |form| %>
-    <div>
-      <%= form.label :name, style: "display: block" %>
-      <%= form.text_field :name %>
-    </div>
-    <div>
-      <%= form.submit %>
+    <div class="container-create-logout">
+      <div>
+          <%= form.label "Create Room", style: "display: block", class: "create-room-title"%>
+          <%= form.text_field :name, class: "input-create-room"%>    
+      </div>
+      <div>
+        <%= form.submit class: "create-room-button"%>
+      </div>
     </div>
   <% end %>
 </div>

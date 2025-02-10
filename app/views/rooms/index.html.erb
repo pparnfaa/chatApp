@@ -1,24 +1,33 @@
 <div id='chatapp'>
   <div id='rooms'>
-   <div id='room-list'>
+    <h1 class="room-header">Room</h1>
+    <div id='room-list'>
       <% @rooms.each do |room| %>
-        <%= render room %>
+          <%= render room %>
       <% end %>
     </div>
-    <%= render partial: 'form', locals: {room: Room.new(name: "Room #{Room.count + 1}")} %>
-    <%= turbo_stream_from @room %>
-    <%= button_to "Logout", session_path,method: :delete %>
-
+    <div class="container-create-logout">
+      <%= render partial: 'form', locals: {room: Room.new(name: "Room #{Room.count + 1}")}%>
+      <%= turbo_stream_from @room %>
+      <div class="wrapper-logout-button">
+        <%= button_to "Logout", session_path,method: :delete, class: "logout-button" %>
+      </div>
+      
+    </div>
+    
   </div>
 
   <div id='messages'>
     <%= turbo_frame_tag 'room-messages' do %>
       <div id='message-list'>
       <% @messages.each do |message| %>
+      <div class="wrapper-message">
         <%= render message %>
+      </div>
+        
       <% end %>
       </div>
-      <%= render partial: 'messages/form', locals: {message: Message.new(room: @room)} %>
+      <%= render partial: 'messages/form', locals: {message: Message.new(room: @room)}, class: "create-message" %>
       <%= turbo_stream_from @room %>
     <% end %>
   </div>
